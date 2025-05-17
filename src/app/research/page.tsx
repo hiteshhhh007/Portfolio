@@ -36,7 +36,7 @@ export default function ResearchPage() {
             />
           </BlurFade>
         ))}
-        {DATA.research.length === 0 && (
+        {(DATA.research.length as number) === 0 && (
            <BlurFade delay={BLUR_FADE_DELAY * 2}>
             <p className="text-muted-foreground">No research items to display yet. Check back soon!</p>
           </BlurFade>
