@@ -1,3 +1,5 @@
+"use client";
+
 import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
@@ -8,8 +10,11 @@ import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
+// Removed React, useState, motion, AnimatePresence, ChevronDownIcon, cn as they are not used in this simplified version
 
 const BLUR_FADE_DELAY = 0.04;
+
+// type SkillsData = typeof DATA.skills; // Not strictly needed if using Object.keys directly
 
 export default function Page() {
   return (
@@ -56,11 +61,10 @@ export default function Page() {
           </BlurFade>
           {DATA.work.map((work, id) => (
             <BlurFade
-              key={work.company}
+              key={work.company + id}
               delay={BLUR_FADE_DELAY * 6 + id * 0.05}
             >
               <ResumeCard
-                key={work.company}
                 logoUrl={work.logoUrl}
                 altText={work.company}
                 title={work.company}
@@ -81,11 +85,10 @@ export default function Page() {
           </BlurFade>
           {DATA.education.map((education, id) => (
             <BlurFade
-              key={education.school}
+              key={education.school + id}
               delay={BLUR_FADE_DELAY * 8 + id * 0.05}
             >
               <ResumeCard
-                key={education.school}
                 href={education.href}
                 logoUrl={education.logoUrl}
                 altText={education.school}
@@ -97,20 +100,44 @@ export default function Page() {
           ))}
         </div>
       </section>
+
+      {/* Skills Section - Updated Styling for Theme and Alignment */}
       <section id="skills">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">Skills</h2>
-          </BlurFade>
-          <div className="flex flex-wrap gap-1">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={skill}>{skill}</Badge>
+        <BlurFade delay={BLUR_FADE_DELAY * 9}>
+          <h2 className="text-xl font-bold mb-6">Technical Skills</h2>
+        </BlurFade>
+        <div className="space-y-3"> {/* Reduced space between categories */}
+          {(Object.keys(DATA.skills) as Array<keyof typeof DATA.skills>).map((category, categoryId) => {
+            const skillsList = DATA.skills[category] as string[];
+            return (
+              <BlurFade key={category} delay={BLUR_FADE_DELAY * 10 + categoryId * 0.05}>
+                <div className="flex flex-wrap items-center gap-x-1 gap-y-1">
+                  <span className="font-semibold text-md text-foreground dark:text-foreground whitespace-nowrap">
+                    {category}:
+                  </span>
+                  {Array.isArray(skillsList) && skillsList.map((skill, skillId) => (
+                    <BlurFade
+                      key={skill}
+                      delay={BLUR_FADE_DELAY * 10 + categoryId * 0.05 + (skillId + 1) * 0.02}
+                    >
+                      <Badge
+                        variant="outline" // Base variant, colors overridden below
+                        className="text-xs px-2.5 py-0.5 
+                                   bg-neutral-800 text-neutral-100  
+                                   dark:bg-neutral-200 dark:text-neutral-900
+                                   border-transparent hover:opacity-90" // Added hover effect
+                      >
+                        {skill}
+                      </Badge>
+                    </BlurFade>
+                  ))}
+                </div>
               </BlurFade>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
+
       <section id="projects">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
@@ -123,7 +150,7 @@ export default function Page() {
                   Check out my latest work
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
+                  I've worked on a variety of projects, from simple
                   websites to complex web applications. Here are a few of my
                   favorites.
                 </p>
@@ -133,12 +160,11 @@ export default function Page() {
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
             {DATA.projects.map((project, id) => (
               <BlurFade
-                key={project.title}
+                key={project.title + id}
                 delay={BLUR_FADE_DELAY * 12 + id * 0.05}
               >
                 <ProjectCard
                   href={project.href}
-                  key={project.title}
                   title={project.title}
                   description={project.description}
                   dates={project.dates}
@@ -152,7 +178,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="hackathons">
+      {/* <section id="hackathons">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -194,7 +220,7 @@ export default function Page() {
             </ul>
           </BlurFade>
         </div>
-      </section>
+      </section> */}
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
@@ -208,12 +234,12 @@ export default function Page() {
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Want to chat? Just shoot me a dm{" "}
                 <Link
-                  href={DATA.contact.social.X.url}
+                  href={DATA.contact.social.X?.url || "#"}
                   className="text-blue-500 hover:underline"
                 >
                   with a direct question on twitter
                 </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
+                and I'll respond whenever I can. I will ignore all
                 soliciting.
               </p>
             </div>
