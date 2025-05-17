@@ -108,7 +108,7 @@ export default function Page() {
         </BlurFade>
         <div className="space-y-3"> {/* Reduced space between categories */}
           {(Object.keys(DATA.skills) as Array<keyof typeof DATA.skills>).map((category, categoryId) => {
-            const skillsList = DATA.skills[category] as string[];
+            const skillsList = DATA.skills[category]; // TypeScript will correctly infer it as readonly
             return (
               <BlurFade key={category} delay={BLUR_FADE_DELAY * 10 + categoryId * 0.05}>
                 <div className="flex flex-wrap items-center gap-x-1 gap-y-1">
