@@ -160,7 +160,6 @@ export const DATA = {
       {
         "type": "Source",
         "href": "https://github.com/hiteshhhh007/CNS-RAG",
-         icon: Icons.github,
       }
     ],
     "image": "",
