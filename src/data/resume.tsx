@@ -247,18 +247,18 @@ export const DATA = {
         "NLP",
       ],
       image: "/SLR.png",
-      // links: [
-      //   {
-      //     type: "Preprint",
-      //     href: "#",
-      //     icon: <Icons.globe className="size-3" />,
-      //   },
-      //   {
-      //     type: "Code",
-      //     href: "https://github.com/hiteshhhh007/edge-transformers-research",
-      //     icon: <Icons.github className="size-3" />,
-      //   }
-      // ],
+      links: [
+        // {
+        //   type: "Preprint",
+        //   href: "#",
+        //   icon: <Icons.globe className="size-3" />,
+        // },
+        // {
+        //   type: "Code",
+        //   href: "https://github.com/hiteshhhh007/edge-transformers-research",
+        //   icon: <Icons.github className="size-3" />,
+        // }
+      ],
     },
     {
       title: "Enhanced Deep-Learning based Mechanism for efficient video compresion",
@@ -276,13 +276,13 @@ export const DATA = {
         "Compression Mechanisms",
       ],
       image: "/Video-Compression.png",
-      // links: [
-      //   {
-      //     type: "Paper",
-      //     href: "#",
-      //     icon: <Icons.globe className="size-3" />,
-      //   },
-      // ],
+      links: [
+        // {
+        //   type: "Paper",
+        //   href: "#",
+        //   icon: <Icons.globe className="size-3" />,
+        // },
+      ],
     },
   ],
   // hackathons: [ // Keeping existing hackathons as requested
