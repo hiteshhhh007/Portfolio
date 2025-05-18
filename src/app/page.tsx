@@ -29,7 +29,7 @@ export default function Page() {
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
               >
-                Hi, I'm{" "}
+                Hi, I&apos;m{" "}
                 <AuroraText
                   colors={["#38bdf8", "#8b5cf6", "#ec4899", "#f59e0b"]}
                   speed={1.2}
@@ -161,7 +161,7 @@ export default function Page() {
                   </AuroraText>
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I've worked on a variety of projects, from simple
+                  I&apos;ve worked on a variety of projects, from simple
                   websites to complex web applications. Here are a few of my
                   favorites.
                 </p>
@@ -210,7 +210,7 @@ export default function Page() {
                 >
                   with a direct question on twitter
                 </Link>{" "}
-                and I'll respond whenever I can. I will ignore all
+                and I&apos;ll respond whenever I can. I will ignore all
                 soliciting.
               </p>
             </div>
