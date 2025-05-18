@@ -31,7 +31,7 @@ export default function Page() {
               >
                 Hi, I&apos;m{" "}
                 <AuroraText
-                  colors={["#38bdf8", "#8b5cf6", "#ec4899", "#f59e0b"]}
+                  colors={["#1a0b0b", "#3c0d0d", "#5a1a1a", "#7a2323", "#9a2f2f", "#ba3a3a"]}
                   speed={1.2}
                 >
                   {firstName}
