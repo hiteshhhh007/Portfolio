@@ -8,9 +8,9 @@ export const DATA = {
   location: "Chennai, India", // From PDF (VIT) / General location
   locationLink: "https://www.google.com/maps/place/chennai",
   description:
-    "AI & ML Developer specializing in RAG systems and LLM applications. Passionate about building scalable AI solutions and contributing to cutting-edge research.", // Updated description
+    "AI & ML Developer specializing in Data Science, Machine Learning, RAG systems and LLM applications. Passionate about building scalable AI solutions and contributing to cutting-edge research.", // Updated description
   summary: // Updated Summary - you can refine this further to be more narrative
-    "A highly motivated and results-oriented AI & ML Engineer with a strong foundation in Computer Science from Vellore Institute of Technology (CGPA: 9.04). Experienced in developing and deploying RAG-based conversational AI, multi-agent systems, and time-series forecasting models. Proven ability to manage Kubernetes clusters, integrate various cloud AI services (Azure OpenAI, AWS Bedrock, GCP Vertex AI), and leverage advanced prompting techniques. Seeking to apply expertise in building innovative AI solutions.",
+    "A highly motivated and results-oriented AI & ML Student with a strong foundation in Computer Science from Vellore Institute of Technology. Experienced in developing and deploying RAG-based conversational AI, multi-agent systems, and time-series forecasting models. Proven ability to manage Kubernetes clusters, integrate various cloud AI services (Azure OpenAI, AWS Bedrock, GCP Vertex AI). Seeking to apply expertise in building innovative AI solutions.",
   avatarUrl: "/me.jpg", // Keep or update if you have a new one
   skills: { // <--- THIS IS THE CORRECTED STRUCTURE
     "Languages": ["Java", "Python", "C/C++", "SQL", "JavaScript", "HTML/CSS"],
@@ -122,7 +122,7 @@ export const DATA = {
     {
       school: "Vellore Institute of Technology",
       href: "https://vit.ac.in/", // Main VIT link
-      degree: "Bachelor of Technology in Computer Science with Specialization in AI & ML (CGPA: 9.04)", // Combined from PDF
+      degree: "Bachelor of Technology in Computer Science with Specialization in AI & ML\nCGPA:9.04", // Combined from PDF
       logoUrl: "/vit-c.jpeg", // Assuming this is the VIT logo you have
       start: "Sep 2022", // From PDF
       end: "May 2026",   // From PDF
@@ -130,7 +130,7 @@ export const DATA = {
     {
       school: "Bhavans Varuna Vidyalaya (CBSE)",
       href: "https://www.bhavansvaruna.ac.in/", // Kept existing
-      degree: "Class IX - Class XII (X: 97%, XII: 96%)", // Combined from PDF
+      degree: "Class IX - Class XII\nX: 97% XII: 96%", // Combined from PDF
       logoUrl: "/bvv.jpeg", // Kept existing
       start: "Jun 2018", // From PDF
       end: "Jun 2022",   // From PDF
@@ -139,7 +139,7 @@ export const DATA = {
   ],
   projects: [ // Keeping existing projects as requested
     {
-    "title": "CNS-RAG",
+    "title": "RAG for Cryptography & Network Security",
     "href": "https://github.com/hiteshhhh007/CNS-RAG",
     "dates": "Jan 2024 - Present",
     "active": true,
@@ -167,7 +167,7 @@ export const DATA = {
   },
   {
     "title": "Zurvey",
-    "href": "https://github.com/hiteshhhh007/Zurvey",
+    "href": "https://github.com/hiteshhhh007/Zurvey-Team-Recursion",
     "dates": "Dec 2023 - Feb 2024",
     "active": true,
     "description": "An AI-powered platform to validate open-ended survey responses, ensuring data integrity. It employs a multi-agent system to detect issues like gibberish, AI-generated content, and irrelevance, aiming to reduce manual review time significantly.",
@@ -179,7 +179,7 @@ export const DATA = {
     "links": [
       {
         "type": "Source",
-        "href": "https://github.com/hiteshhhh007/Zurvey",
+        "href": "https://github.com/hiteshhhh007/Zurvey-Team-Recursion",
       }
     ],
     "image": "",

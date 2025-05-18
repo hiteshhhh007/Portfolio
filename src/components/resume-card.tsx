@@ -7,13 +7,13 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import React from "react"; // Make sure React is imported
 
 interface ResumeCardProps {
   logoUrl: string;
   altText: string;
   title: string;
-  subtitle?: string;
+  subtitle?: string; // This prop receives the degree string
   href?: string;
   badges?: readonly string[];
   period: string;
@@ -84,14 +84,28 @@ export const ResumeCard = ({
                 {period}
               </div>
             </div>
-            {subtitle && <div className="font-sans text-xs">{subtitle}</div>}
+            {/* MODIFICATION START */}
+            {subtitle && (
+              <div className="font-sans text-xs">
+                {typeof subtitle === 'string' ? (
+                  subtitle.split('\n').map((line, index, arr) => (
+                    <React.Fragment key={index}>
+                      {line}
+                      {index < arr.length - 1 && <br />}
+                    </React.Fragment>
+                  ))
+                ) : (
+                  subtitle // Fallback if subtitle is not a string (should not happen based on types)
+                )}
+              </div>
+            )}
+            {/* MODIFICATION END */}
           </CardHeader>
           {description && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{
                 opacity: isExpanded ? 1 : 0,
-
                 height: isExpanded ? "auto" : 0,
               }}
               transition={{
