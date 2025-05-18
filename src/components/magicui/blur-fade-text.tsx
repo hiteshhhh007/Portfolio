@@ -1,3 +1,4 @@
+// src/components/magicui/blur-fade-text.tsx
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -5,7 +6,8 @@ import { AnimatePresence, motion, Variants } from "framer-motion";
 import { useMemo } from "react";
 
 interface BlurFadeTextProps {
-  text: string;
+  text?: string; // Make text optional
+  children?: React.ReactNode; // Add children prop
   className?: string;
   variant?: {
     hidden: { y: number };
@@ -19,6 +21,7 @@ interface BlurFadeTextProps {
 }
 const BlurFadeText = ({
   text,
+  children, // Destructure children
   className,
   variant,
   characterDelay = 0.03,
@@ -31,9 +34,12 @@ const BlurFadeText = ({
     visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
   };
   const combinedVariants = variant || defaultVariants;
-  const characters = useMemo(() => Array.from(text), [text]);
+  
+  // Prefer children if provided, otherwise use text for character animation
+  const contentToRender = children || text;
+  const characters = useMemo(() => contentToRender && typeof contentToRender === 'string' ? Array.from(contentToRender) : [], [contentToRender]);
 
-  if (animateByCharacter) {
+  if (animateByCharacter && text) { // animateByCharacter typically relies on the `text` prop
     return (
       <div className="flex">
         <AnimatePresence>
@@ -45,7 +51,7 @@ const BlurFadeText = ({
               exit="hidden"
               variants={combinedVariants}
               transition={{
-                yoyo: Infinity,
+                yoyo: Infinity, // Should this be yoyo: Infinity? Or just once?
                 delay: delay + i * characterDelay,
                 ease: "easeOut",
               }}
@@ -61,24 +67,25 @@ const BlurFadeText = ({
   }
 
   return (
-    <div className="flex">
-      <AnimatePresence>
-        <motion.span
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          variants={combinedVariants}
-          transition={{
-            yoyo: Infinity,
-            delay,
-            ease: "easeOut",
-          }}
-          className={cn("inline-block", className)}
-        >
-          {text}
-        </motion.span>
-      </AnimatePresence>
-    </div>
+    // This div might not be necessary if motion.span handles layout correctly
+    // <div className="flex"> 
+    <AnimatePresence>
+      <motion.span
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={combinedVariants}
+        transition={{
+          // yoyo: Infinity, // Usually not yoyo: Infinity for a one-time entrance
+          delay,
+          ease: "easeOut",
+        }}
+        className={cn(className)} // Apply className directly to the motion.span
+      >
+        {contentToRender}
+      </motion.span>
+    </AnimatePresence>
+    // </div>
   );
 };
 

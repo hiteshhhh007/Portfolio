@@ -63,7 +63,7 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      keyframes: {
+      keyframes: { // <<< KEYFRAMES SECTION
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -72,10 +72,16 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "aurora": { // <-- ADD THIS KEYFRAME DEFINITION
+          "0%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+          "100%": { backgroundPosition: "0% 50%" },
+        },
       },
-      animation: {
+      animation: { // <<< ANIMATION SECTION
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "aurora": "aurora 10s infinite linear", // <-- ADD THIS ANIMATION UTILITY
       },
     },
   },

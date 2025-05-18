@@ -10,13 +10,14 @@ import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
 import Markdown from "react-markdown";
-// Removed React, useState, motion, AnimatePresence, ChevronDownIcon, cn as they are not used in this simplified version
+import { AuroraText } from "@/components/magicui/aurora-text"; // Import AuroraText
 
 const BLUR_FADE_DELAY = 0.04;
 
-// type SkillsData = typeof DATA.skills; // Not strictly needed if using Object.keys directly
-
 export default function Page() {
+  const nameParts = DATA.name.split(" ");
+  const firstName = nameParts[0];
+
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
@@ -27,8 +28,17 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
-                text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
-              />
+              >
+                Hi, I'm{" "}
+                <AuroraText
+                  colors={["#38bdf8", "#8b5cf6", "#ec4899", "#f59e0b"]}
+                  speed={1.2}
+                >
+                  {firstName}
+                </AuroraText>{" "}
+                👋
+              </BlurFadeText>
+
               <BlurFadeText
                 className="max-w-[600px] md:text-xl"
                 delay={BLUR_FADE_DELAY}
@@ -101,14 +111,13 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Skills Section - Updated Styling for Theme and Alignment */}
       <section id="skills">
         <BlurFade delay={BLUR_FADE_DELAY * 9}>
           <h2 className="text-xl font-bold mb-6">Technical Skills</h2>
         </BlurFade>
-        <div className="space-y-3"> {/* Reduced space between categories */}
+        <div className="space-y-3">
           {(Object.keys(DATA.skills) as Array<keyof typeof DATA.skills>).map((category, categoryId) => {
-            const skillsList = DATA.skills[category]; // TypeScript will correctly infer it as readonly
+            const skillsList = DATA.skills[category];
             return (
               <BlurFade key={category} delay={BLUR_FADE_DELAY * 10 + categoryId * 0.05}>
                 <div className="flex flex-wrap items-center gap-x-1 gap-y-1">
@@ -121,11 +130,11 @@ export default function Page() {
                       delay={BLUR_FADE_DELAY * 10 + categoryId * 0.05 + (skillId + 1) * 0.02}
                     >
                       <Badge
-                        variant="outline" // Base variant, colors overridden below
-                        className="text-xs px-2.5 py-0.5 
-                                   bg-neutral-800 text-neutral-100  
+                        variant="outline"
+                        className="text-xs px-2.5 py-0.5
+                                   bg-neutral-800 text-neutral-100
                                    dark:bg-neutral-200 dark:text-neutral-900
-                                   border-transparent hover:opacity-90" // Added hover effect
+                                   border-transparent hover:opacity-90"
                       >
                         {skill}
                       </Badge>
@@ -147,10 +156,12 @@ export default function Page() {
                   My Projects
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
+                  <AuroraText colors={["#10b981", "#3b82f6", "#8b5cf6"]}>
+                    Check out my latest work
+                  </AuroraText>
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
+                  I've worked on a variety of projects, from simple
                   websites to complex web applications. Here are a few of my
                   favorites.
                 </p>
@@ -178,49 +189,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* <section id="hackathons">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Hackathons
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  I like building things
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  During my time in university, I attended{" "}
-                  {DATA.hackathons.length}+ hackathons. People from around the
-                  country would come together and build incredible things in 2-3
-                  days. It was eye-opening to see the endless possibilities
-                  brought to life by a group of motivated and passionate
-                  individuals.
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.hackathons.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    location={project.location}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
-          </BlurFade>
-        </div>
-      </section> */}
+      {/* <section id="hackathons"> ... </section> */}
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 16}>
@@ -229,7 +198,9 @@ export default function Page() {
                 Contact
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
+                <AuroraText colors={["#ef4444", "#f97316", "#eab308"]}>
+                  Get in Touch
+                </AuroraText>
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                 Want to chat? Just shoot me a dm{" "}
@@ -239,7 +210,7 @@ export default function Page() {
                 >
                   with a direct question on twitter
                 </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
+                and I'll respond whenever I can. I will ignore all
                 soliciting.
               </p>
             </div>
