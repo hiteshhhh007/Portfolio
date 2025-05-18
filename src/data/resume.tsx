@@ -231,7 +231,91 @@ export const DATA = {
     "video": ""
   }
   ],
-  research: [ // Keeping existing research as requested, you can update this based on your PDF or future work
+  research: [
+    {
+      title: "SpeakeT-Net: A Spatio-Temporal Transformer approach for Lip-Reading",
+      href: "#",
+      dates: "Winter 2025",
+      authors: ["Hitesh Krishna","Dr. Thomas Abraham","Joshua Shaktivel Raju"],
+      publication: "IEEE Open Access (Under-Review)",
+      description:
+        "In this work, we propose SpeakeT-Net, a spatiotemporal Transformer-based architecture for lipreading that effectively captures both spatial and temporal dependencies in video-based visual speech recognition. Unlike existing models that struggle with noisy or real-world data, SpeakeT-Net combines Transformer attention mechanisms with Bidirectional LSTM layers to model short-term and long-term lip movement patterns. The model processes video frames through a dedicated Feature Extraction pipeline enhanced with learned Positional Encodings, preserving the spatial relationships among facial features. The Recurrent Decoding stage, composed of BiLSTM layers followed by a Dense layer and Softmax activation, outputs token-wise predictions with high precision. By leveraging Connectionist Temporal Classification (CTC) loss alongside attention mechanisms, SpeakeT-Net aligns input-output sequences more effectively, addressing the alignment challenge common in lipreading tasks. Experimental results on the GRID corpus demonstrate the superiority of our approach, achieving a 2.3% Word Error Rate (WER) and 0.3% Character Error Rate (CER), outperforming current state-of-the-art lipreading systems.",
+      technologies: [
+        "Python",
+        "Pytorch",
+        "Bi-Directional LSTM",
+        "Spatio - Temporal Transformers",
+      ],
+      image: "/LipNet.png",
+      links: [
+        // {
+        //   type: "Preprint",
+        //   href: "#",
+        //   icon: <Icons.globe className="size-3" />,
+        // },
+        // {
+        //   type: "Code",
+        //   href: "https://github.com/hiteshhhh007/edge-transformers-research",
+        //   icon: <Icons.github className="size-3" />,
+        // }
+      ],
+    },
+    {
+      title: "A Shallow-ResNet based Framework for Super Resolution Tasks",
+      href: "#",
+      dates: "Winter 2025",
+      authors: ["Dr. Suguneshwari G","Hitesh Krishna"],
+      publication: "Yet to be submitted",
+      description:
+        "In this work, we propose Shallow-SRResNet (SSRResNet) and its GAN-based counterpart SSRGAN, two lightweight super-resolution architectures optimized for deployment in memory-constrained environments such as mobile devices and embedded systems. SSRResNet is derived by compressing the original SRResNet through the removal of multiple ResNet blocks, significantly reducing model size while preserving high performance. SSRGAN extends this by incorporating a streamlined discriminator and enhancing perceptual quality using a novel SqueezeNet-based perceptual loss, which replaces the heavier VGG-based loss used in SRGAN, offering efficient feature extraction and finer detail capture. Additionally, we integrate Total Variation Loss to minimize artifacts and improve image clarity during upscaling. Together, SSRResNet and SSRGAN deliver superior visual fidelity and perceptual quality while maintaining competitive accuracy and drastically reduced computational demands.",
+      technologies: [
+        "Python",
+        "Pytorch",
+        "GAN",
+        "Optimization",
+      ],
+      image: "/SSRGAN.png",
+      links: [
+        // {
+        //   type: "Preprint",
+        //   href: "#",
+        //   icon: <Icons.globe className="size-3" />,
+        // },
+        // {
+        //   type: "Code",
+        //   href: "https://github.com/hiteshhhh007/edge-transformers-research",
+        //   icon: <Icons.github className="size-3" />,
+        // }
+      ],
+    },
+    {
+      title: "TamilSTARNet: Tamil character Segmentation via Tri-phase mechanism and Attention based Recognition for Handwritten Document Digitization",
+      href: "#",
+      dates: "Summer 2024",
+      authors: ["Dr. Sasithradevi A","Hitesh Krishna", "Joshua Shaktivel Raju","Dr. Kanimozhi G"],
+      publication: "Springer Nature (Under-Review)",
+      description:
+        "In this work, we propose TamilSTARNet, a robust framework for recognizing handwritten Tamil documents, addressing the inherent complexities of the Tamil script such as intricate curves, diverse shapes, and high variability in handwriting styles. Our approach comprises two key components: a Tri-Phase Segmentation strategy that systematically breaks down documents into sentences, words, and characters to handle irregular spacing and complex layouts, and an attention-driven CNN-based recognition model that incorporates self-attention, channel attention, and convolutional block attention mechanisms to enhance feature extraction. By leveraging these attention modules, TamilSTARNet effectively captures subtle variations and intricate patterns in handwritten Tamil text.",
+      technologies: [
+        "Python",
+        "Attention Mechanisms",
+        "TensorFlow",
+        "Computer Vision",
+      ],
+      image: "/TamilSTARNet.png",
+      links: [
+        // {
+        //   type: "Preprint",
+        //   href: "#",
+        //   icon: <Icons.globe className="size-3" />,
+        // },
+        // {
+        //   type: "Code",
+        //   href: "https://github.com/hiteshhhh007/edge-transformers-research",
+        //   icon: <Icons.github className="size-3" />,
+        // }
+      ],
+    }, 
     {
       title: "A Systematic Literature Review on Multimodal Aspect-Based Sentiment Analysis (MABSA)",
       href: "#",
@@ -246,7 +330,7 @@ export const DATA = {
         "TensorFlow",
         "NLP",
       ],
-      image: "/SLR.png",
+      image: "/MABSA.png",
       links: [
         // {
         //   type: "Preprint",
