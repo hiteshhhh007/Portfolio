@@ -69,13 +69,6 @@
         --animate-aurora: aurora 8s ease-in-out infinite alternate;
     }
   }
-    html,
-    body {
-      @apply cursor-none;
-    }
-    a, button, [role="button"], input[type="submit"], input[type="button"], label[for], select, textarea, summary, .cursor-pointer {
-        @apply cursor-none !important; /* Use !important cautiously, but it might be needed here */
-    }
 
   @layer base {
     * {
@@ -83,7 +76,7 @@
     }
     body {
       @apply bg-background text-foreground;
-      /* You can add cursor-none here if you prefer it over the layout.tsx change */
+      
       /* cursor: none; */
     }
   }

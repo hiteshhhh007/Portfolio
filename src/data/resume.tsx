@@ -24,7 +24,7 @@ export const DATA = {
   },
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/blog", icon: NotebookIcon, label: "Blog" },
+    
     { href: "/research", icon: FlaskConicalIcon, label: "Research" }, // Kept research, can be populated later
     { href: "/resume", icon: FileTextIcon, label: "Resume" },
   ],
@@ -53,15 +53,15 @@ export const DATA = {
       },
       X: { // Kept X, update URL if needed
         name: "X",
-        url: "https://x.com/your_x_profile", // Replace with your X profile
+        url: "https://x.com/Hiteshhh_07", // Replace with your X profile
         icon: Icons.x,
-        navbar: false, // Changed to false as it's not on the PDF header
+        navbar: true, // Changed to false as it's not on the PDF header
       },
       email: { // Keep email link
         name: "Send Email",
         url: "mailto:hiteshkrishna.kv2022@vitstudent.ac.in",
         icon: Icons.email,
-        navbar: false,
+        navbar: true,
       },
     },
   },

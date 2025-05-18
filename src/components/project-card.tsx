@@ -1,4 +1,4 @@
-"use client"; // Required for useState
+"use client";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -12,8 +12,8 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
-import { useState } from "react"; // Import useState
-import { BorderBeam } from "@/components/magicui/border-beam"; // Import BorderBeam
+import { useState, useEffect } from "react";
+import { BorderBeam } from "@/components/magicui/border-beam";
 
 interface Props {
   title: string;
@@ -45,24 +45,26 @@ export function ProjectCard({
   className,
 }: Props) {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  const cardInnerContent = (
-    // Add relative positioning here for BorderBeam to work correctly within the Card
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Define the full interactive card content
+  const InteractiveCardContent = () => (
     <Card
       className={cn(
-        "flex flex-col overflow-hidden border h-full relative", // Added 'relative'
-        href ? "group-hover:shadow-xl" : "hover:shadow-xl", // Enhanced shadow on hover
+        "flex flex-col overflow-hidden border h-full relative",
+        href ? "group-hover:shadow-xl" : "hover:shadow-xl",
         "transition-all duration-300 ease-out"
       )}
+      // Add mouse handlers here if this is the hoverable element
+      onMouseEnter={href ? () => setIsHovered(true) : undefined}
+      onMouseLeave={href ? () => setIsHovered(false) : undefined}
     >
-      {isHovered && href && ( // Conditionally render BorderBeam if hovered and card is linkable
-        <BorderBeam
-          size={1000} // Adjust size as needed
-          duration={3}  // Adjust duration for desired speed
-          delay={0}
-          // You can customize colors or use the default rainbow
-          // colors={["#FF0080", "#7928CA"]}
-        />
+      {isMounted && isHovered && href && (
+        <BorderBeam size={1000} duration={3} delay={0} />
       )}
       <div className="block">
         {video && (
@@ -120,14 +122,10 @@ export function ProjectCard({
                 href={linkItem?.href}
                 key={idx}
                 target="_blank"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-                className="relative z-10" // Ensure footer links are on top of BorderBeam
+                onClick={(e) => e.stopPropagation()}
+                className="relative z-10"
               >
-                <Badge
-                  className="flex gap-2 px-2 py-1 text-[10px] hover:bg-secondary/80 dark:hover:bg-secondary/60"
-                >
+                <Badge className="flex gap-2 px-2 py-1 text-[10px] hover:bg-secondary/80 dark:hover:bg-secondary/60">
                   {linkItem.icon}
                   {linkItem.type}
                 </Badge>
@@ -139,6 +137,34 @@ export function ProjectCard({
     </Card>
   );
 
+  // Define a placeholder for SSR when the card is linked
+  // This MUST render the same top-level element type as InteractiveCardContent (i.e., a div from Card)
+  // but with minimal internal differences.
+  const PlaceholderCardContent = () => (
+    <Card
+        className={cn(
+            "flex flex-col overflow-hidden border h-full relative", // Keep consistent base classes
+            "transition-all duration-300 ease-out" // Keep transition consistent
+        )}
+    >
+        {/* Minimal content for SSR placeholder, structure should match the top-level of InteractiveCardContent */}
+        <div className="block h-40 w-full bg-muted/30"></div> {/* Placeholder for image/video area */}
+        <CardHeader className="px-2">
+            <div className="space-y-1">
+                <CardTitle className="mt-1 text-base">{title}</CardTitle>
+                <time className="font-sans text-xs">{dates}</time>
+            </div>
+        </CardHeader>
+        <CardContent className="mt-auto flex flex-col px-2">
+            {/* Minimal tags or empty div */}
+        </CardContent>
+        <CardFooter className="px-2 pb-2">
+            {/* Minimal links or empty div */}
+        </CardFooter>
+    </Card>
+);
+
+
   if (href) {
     return (
       <Link
@@ -146,21 +172,26 @@ export function ProjectCard({
         target="_blank"
         rel="noopener noreferrer"
         className={cn("block h-full group", className)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        // Move mouse handlers to the Card itself if that's the visual boundary for hover
+        // OR keep them here if the Link's bounding box is what defines hover
+        onMouseEnter={!isMounted ? undefined : () => setIsHovered(true)} // Defer hover logic until mounted
+        onMouseLeave={!isMounted ? undefined : () => setIsHovered(false)}
       >
-        {cardInnerContent}
+        {isMounted ? <InteractiveCardContent /> : <PlaceholderCardContent />}
       </Link>
     );
   }
 
+  // For non-linked cards, hover effect can be simpler
+  // Or apply similar isMounted logic if BorderBeam can appear on them too
   return (
     <div
       className={cn("h-full", className)}
-      onMouseEnter={() => setIsHovered(true)} // Also add for non-linked cards if desired
-      onMouseLeave={() => setIsHovered(false)} // Also add for non-linked cards if desired
+      onMouseEnter={() => { if (isMounted) setIsHovered(true);}}
+      onMouseLeave={() => { if (isMounted) setIsHovered(false);}}
     >
-      {cardInnerContent}
+       {/* Render InteractiveCardContent directly or a simpler version if non-linked doesn't need all features */}
+      <InteractiveCardContent />
     </div>
   );
 }
