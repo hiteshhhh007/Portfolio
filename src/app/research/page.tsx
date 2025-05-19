@@ -1,6 +1,7 @@
 import BlurFade from "@/components/magicui/blur-fade";
 import { ResearchCard } from "@/components/research-card";
 import { DATA } from "@/data/resume";
+import { AuroraText } from "@/components/magicui/aurora-text";
 
 export const metadata = {
   title: "Research",
@@ -13,8 +14,11 @@ export default function ResearchPage() {
   return (
     <section>
       <BlurFade delay={BLUR_FADE_DELAY}>
-        <h1 className="font-medium text-2xl mb-8 tracking-tighter">
-          Research & Publications
+        <h1 className="font-medium text-6xl mb-8 tracking-tighter">
+          <AuroraText
+            colors={["#B3D4FF", "#80BFFF", "#4DAAFF", "#1A94FF", "#0077E6", "#005BB5", "#004080", "#00264D"]}>
+              Research & Publications
+          </AuroraText>
         </h1>
       </BlurFade>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 lg:grid-cols-1"> {/* Using 1 column layout for research */}

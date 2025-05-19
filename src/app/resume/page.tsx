@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { DATA } from "@/data/resume";
 import { DownloadIcon } from "lucide-react";
 import Link from "next/link";
+import { AuroraText } from "@/components/magicui/aurora-text";
 
 export const metadata = {
   title: "Resume",
@@ -15,8 +16,8 @@ export default function ResumePage() {
   return (
     <section className="flex flex-col items-center justify-center min-h-[calc(100dvh-15rem)] py-8">
       <BlurFade delay={BLUR_FADE_DELAY}>
-        <h1 className="text-3xl font-bold mb-6 text-center tracking-tighter">
-          My Resume
+        <h1 className="text-6xl font-bold mb-6 text-center tracking-tighter">
+          <AuroraText>My Resume</AuroraText>
         </h1>
       </BlurFade>
       <BlurFade delay={BLUR_FADE_DELAY * 2}>
@@ -27,7 +28,7 @@ export default function ResumePage() {
       </BlurFade>
       <BlurFade delay={BLUR_FADE_DELAY * 3}>
         <Button asChild size="lg" className="shadow-lg hover:shadow-xl transition-shadow duration-300">
-          <Link href={DATA.contact.resumeUrl || "/resume.pdf"} target="_blank" download={`${DATA.name.replace(" ","_")}_Resume.pdf`}>
+          <Link href={DATA.contact.resumeUrl || "/HiteshK-Resume.pdf"} target="_blank" download={`${DATA.name.replace(" ","_")}_Resume.pdf`}>
             <DownloadIcon className="mr-2 h-5 w-5" />
             Download Resume
           </Link>
